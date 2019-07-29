@@ -5,7 +5,7 @@ services:
     environment:
       POSTGRES_PASSWORD: node4db
     ports:
-      - 5431:5431
+      - 5432:5432
     volumes:
       - node4db:/var/lib/postgresql/data
 volumes:

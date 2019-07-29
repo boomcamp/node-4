@@ -5,7 +5,7 @@ const endpoint = require('./controllers/endpoints.js');
 
 massive({
 	host: 'localhost',
-	port: 5431,
+	port: 5432,
 	database: 'node4db',
 	user: 'postgres',
 	password: 'node4db',
@@ -18,6 +18,8 @@ massive({
 
 	//--- Endpoint Routes ---
 	app.post('/api/register', endpoint.register);
+	app.get('/api/protected/data', endpoint.tokenizer);
+	app.post('/api/login', endpoint.login);
 
 	//--- Server Test ---
 	app.get('/', function(req, res) {
