@@ -43,3 +43,7 @@ massive({
             console.log(`Listening on port ${port}`);
         });
     })
+    .catch(e => {
+        console.error(e);
+        res.status(401).end();
+    })
