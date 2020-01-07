@@ -1,6 +1,8 @@
 const express = require('express')
 // const app = express()
 const massive = require('massive')
+const jwt = require('jsonwebtoken');
+const secret = require('../secret.js');
 const user = require('./controllers/user_controllers.js')
 
 massive({
@@ -18,13 +20,13 @@ massive({
     app.post('/api/register', user.register)
     app.get('/api/protected/data', 
         function(req, res){
-            if(!req.handlers.authorization){
+            if(!req.headers.authorization){
                 return res.status(401).end();
             }
 
             try{
                 const token = req.headers.authorization.split(' ')[1];
-                jwt.verify(toke, secret);
+                jwt.verify(token, secret);
                 res.status(200).json({ data: 'here is the protected data.'});
             }catch(err){
                 console.error(err)
