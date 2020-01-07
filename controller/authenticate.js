@@ -37,7 +37,7 @@ module.exports = {
 
     try {
       const token = req.headers.authorization.split(" ")[1];
-      jwt.verify(token, secret); // will throw an Error when token is invalid!!!
+      jwt.verify(token, secret); 
       res.status(200).json({ data: "here is the protected data" });
     } catch (err) {
       console.error(err);
