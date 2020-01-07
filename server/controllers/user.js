@@ -11,7 +11,7 @@ function register(req, res) {
             return db.users.insert({
                 username,
                 email,
-                password
+                password: hash
             }, {
                 fields: ['id', 'username', 'email']
             });
@@ -25,7 +25,6 @@ function register(req, res) {
             res.status(500).end();
         });
 };
-
 
 module.exports = {
     register
