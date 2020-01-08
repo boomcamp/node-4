@@ -76,7 +76,12 @@ function login(req, res) {
       });
   }
 
+  function protected(req, res){
+    res.status(200).json({ data: 'here is the protected data' });
+  }
+
 module.exports = {
     register,
-    login
+    login,
+    protected
 }

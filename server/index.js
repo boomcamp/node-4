@@ -16,7 +16,7 @@ massive({
 
     const app = express()
 
-    const auth = (req, res) => {
+    const auth = (req, res, next) => {
         if (!req.headers.authorization) {   // if without token
             return res.status(401).end();   // return unathorized
         }
@@ -24,7 +24,7 @@ massive({
         try {
             const token = req.headers.authorization.split(' ')[1];
             jwt.verify(token, secret); // will throw an Error when token is invalid!!!
-            res.status(200).json({ data: 'here is the protected data' });
+            next();
         } catch (err) {
             console.error(err);
             res.status(401).end();
@@ -35,7 +35,7 @@ massive({
 
     app.use(express.json())
     app.post('/api/register', register.register)
-    app.get('/api/protected/data', auth)
+    app.get('/api/protected/data', auth, register.protected)
         
     app.post('/api/login', auth, register.login)
 
