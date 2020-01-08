@@ -28,13 +28,6 @@ function userRegister(req, res) {
       console.error(err);
       res.status(500).end();
     });
-  //   db.users
-  //     .insert({ username, email, password })
-  //     .then(register => res.status(201).json(register))
-  //     .catch(err => {
-  //       console.error(err); // if something happens we handle the error as well.
-  //       res.status(500).end();
-  //     });
 }
 
 function protectedData(req, res) {
